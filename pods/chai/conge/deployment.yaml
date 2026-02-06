@@ -1,0 +1,23 @@
+# chai-conge-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chai-conge
+  namespace: chai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chai-conge
+  template:
+    metadata:
+      labels:
+        app: chai-conge
+    spec:
+      containers:
+      - name: chai-conge
+        image: saasdrc.azurecr.io/chai/chai-conge-request:latest
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: saasdrc-registry

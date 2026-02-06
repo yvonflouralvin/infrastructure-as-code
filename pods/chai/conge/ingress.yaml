@@ -1,0 +1,20 @@
+# chai-conge-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chai-conge
+  namespace: chai
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: chai.saas.cd
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: chai-conge
+            port:
+              number: 80
